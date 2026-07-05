@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo.png">
     <title>Company Profile - Pabrik Tekstil & Benang</title>
+    <meta name="description" content="TextileCorp adalah produsen dan pabrik tekstil terkemuka di Indonesia yang memproduksi benang katun 100%, kain polyester, dan menerima pesanan kustom berkualitas ekspor.">
+    <meta name="keywords" content="pabrik tekstil, produsen benang, kain polyester, katun, tekstil indonesia, bmwillmex">
     <style>
         /* === PENGATURAN DASAR === */
         :root {
@@ -44,11 +47,24 @@
             margin: 0 auto;
         }
 
-        .logo {
+        /* === PENGATURAN LOGO HEADER BARU === */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Jarak antara gambar logo dan teks merk */
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px; /* KUNCI UTAMA: Membatasi tinggi logo agar pas di header dan tidak menutupi halaman */
+            width: auto;  /* Lebar gambar akan menyesuaikan secara proporsional agar tidak gepeng */
+            object-fit: contain;
+        }
+
+        .logo-text {
             font-size: 24px;
             font-weight: bold;
             color: var(--primary-color);
-            text-decoration: none;
         }
 
         .nav-links {
@@ -127,15 +143,35 @@
             flex: 1;
         }
 
-        .about-image {
-            flex: 1;
-            background-color: #e2e8f0;
-            height: 300px;
+        /* === PERBAIKAN TATA LETAK TENTANG KAMI (ATAS & BAWAH) === */
+        .about-content {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column; /* KUNCI UTAMA: Mengubah susunan menjadi atas-bawah */
+            gap: 30px; /* Jarak antara gambar dan teks di bawahnya */
+        }
+
+        .about-image {
+            width: 100%; /* Membuat wadah gambar membentang penuh ke samping */
             border-radius: 10px;
-            color: #64748b;
+            overflow: hidden; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .about-img {
+            width: 100%;
+            max-height: 500px; /* Membatasi tinggi maksimal agar tidak terlalu raksasa/memakan seluruh layar PC */
+            object-fit: cover; /* Menjaga agar gambar tidak gepeng dan proporsional */
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover .about-img {
+            transform: scale(1.02);
+        }
+
+        .about-text {
+            width: 100%;
+            text-align: justify; /* Membuat teks rata kanan-kiri agar rapi di bawah gambar lebar */
         }
 
         /* === BAGIAN LAYANAN / PRODUK === */
@@ -607,7 +643,10 @@
     <header>
         <div class="nav-container">
             <!-- GANTI NAMA LOGO DI SINI -->
-            <a href="#" class="logo">TextileCorp</a>
+            <a href="#" class="logo-wrapper">
+                <img src="logo.png" class="logo-img" alt="Logo TextileCorp">
+                <span class="logo-text">TextileCorp</span>
+            </a>
 
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
@@ -631,7 +670,7 @@
         <h1>Kualitas Benang dan Kain Terbaik untuk Kebutuhan Industri Anda</h1>
         <p>Kami adalah produsen tekstil terkemuka yang memadukan teknologi modern dan material berkualitas tinggi untuk menghasilkan rajutan sempurna.</p>
         <a href="#kontak" class="btn">Hubungi Kami Sekarang</a>
-        <a href="yudhistira-ramandha-putra-certificate-achievements-facfsda23.pdf" download="katalog.pdf" class="btn-download">
+        <a href="ekatalog.pdf" download="ekatalog.pdf" class="btn-download">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
             </svg>
@@ -644,7 +683,7 @@
         <h2 class="section-title">Tentang Kami</h2>
         <div class="about-content">
             <div class="about-image">
-                [Area Foto Pabrik/Mesin Tekstil]
+                <img src="mesin.jpg">
             </div>
             <div class="about-text">
                 <h3>Sejarah Perusahaan</h3>
@@ -724,7 +763,7 @@
                 <br>
                 <!-- GANTI DETAIL KONTAK DI SINI -->
                 <p><strong>Alamat:</strong> Jl. Industri Raya No. 88, Kawasan Pabrik Tekstil, Kota, Indonesia</p>
-                <p><strong>Telepon / WhatsApp:</strong> +62 812 3456 7890</p>
+                <p><strong>Telepon / WhatsApp:</strong> +62 823 1053 1691</p>
                 <p><strong>Email:</strong> info@textilecorp.com</p>
                 <p><strong>Jam Operasional:</strong> Senin - Jumat (08:00 - 17:00)</p>
             </div>

@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo.png">
     <title>Company Profile - Textile & Yarn Factory</title>
+    <meta name="description" content="TextileCorp is a leading textile manufacturer and factory in Indonesia producing 100% cotton yarn, polyester fabric, and accepting export-quality custom orders.">
+    <meta name="keywords" content="textile factory, yarn manufacturer, polyester fabric, cotton, indonesia textile, bmwillmex">
     <style>
         /* === PENGATURAN DASAR === */
         :root {
-            --primary-color: #0f172a; 
-            --secondary-color: #3b82f6; 
+            --primary-color: #0f172a; /* Warna utama (Biru Gelap) */
+            --secondary-color: #3b82f6; /* Warna aksen (Biru Terang) */
             --text-color: #333333;
             --bg-light: #f8fafc;
         }
@@ -44,11 +47,24 @@
             margin: 0 auto;
         }
 
-        .logo {
+        /* === PENGATURAN LOGO HEADER BARU === */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Jarak antara gambar logo dan teks merk */
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px; /* KUNCI UTAMA: Membatasi tinggi logo agar pas di header dan tidak menutupi halaman */
+            width: auto;  /* Lebar gambar akan menyesuaikan secara proporsional agar tidak gepeng */
+            object-fit: contain;
+        }
+
+        .logo-text {
             font-size: 24px;
             font-weight: bold;
             color: var(--primary-color);
-            text-decoration: none;
         }
 
         .nav-links {
@@ -127,15 +143,35 @@
             flex: 1;
         }
 
-        .about-image {
-            flex: 1;
-            background-color: #e2e8f0;
-            height: 300px;
+        /* === PERBAIKAN TATA LETAK TENTANG KAMI (ATAS & BAWAH) === */
+        .about-content {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column; /* KUNCI UTAMA: Mengubah susunan menjadi atas-bawah */
+            gap: 30px; /* Jarak antara gambar dan teks di bawahnya */
+        }
+
+        .about-image {
+            width: 100%; /* Membuat wadah gambar membentang penuh ke samping */
             border-radius: 10px;
-            color: #64748b;
+            overflow: hidden; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .about-img {
+            width: 100%;
+            max-height: 500px; /* Membatasi tinggi maksimal agar tidak terlalu raksasa/memakan seluruh layar PC */
+            object-fit: cover; /* Menjaga agar gambar tidak gepeng dan proporsional */
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover .about-img {
+            transform: scale(1.02);
+        }
+
+        .about-text {
+            width: 100%;
+            text-align: justify; /* Membuat teks rata kanan-kiri agar rapi di bawah gambar lebar */
         }
 
         /* === BAGIAN LAYANAN / PRODUK === */
@@ -162,20 +198,32 @@
             transform: translateY(-5px);
         }
 
-        .card-img-placeholder {
-            background-color: #e2e8f0;
-            height: 150px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-        }
-
         .card h3 {
             margin-bottom: 15px;
             color: var(--primary-color);
+        }
+
+        /* === FITUR 1: HOVER-TO-ZOOM (GAMBAR PRODUK) === */
+        .img-zoom-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .zoom-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memastikan gambar pas di dalam kotak */
+            transition: transform 0.3s ease; /* Transisi halus saat kursor masuk/keluar */
+            transform-origin: center center; /* Titik awal zoom */
+        }
+
+        .img-zoom-container:hover .zoom-img {
+            transform: scale(2); /* Seberapa besar efek zoom-nya (2 = 200%) */
+            cursor: crosshair; /* Mengubah kursor jadi tanda plus (+) */
         }
 
         /* === BAGIAN KONTAK === */
@@ -286,6 +334,7 @@
             fill: white;
         }
 
+        /* Penyesuaian untuk layar HP agar tidak terlalu besar */
         @media (max-width: 768px) {
             .whatsapp-float {
                 width: 50px;
@@ -301,14 +350,277 @@
 
         /* === ANIMASI GULIR (SCROLL ANIMATION) === */
         .reveal {
-            opacity: 0; 
-            transform: translateY(50px); 
+            opacity: 0; /* Elemen disembunyikan awalnya */
+            transform: translateY(50px); /* Posisi diturunkan 50 pixel */
         }
 
         .reveal.active {
-            opacity: 1; 
-            transform: translateY(0); 
+            opacity: 1; /* Elemen dimunculkan */
+            transform: translateY(0); /* Posisi dikembalikan ke tempat semula */
             transition: all 0.8s ease-out;
+        }
+
+        /* === FITUR 2: INFINITE LOGO MARQUEE === */
+        .marquee-section {
+            background-color: white;
+            padding: 60px 0;
+            overflow: hidden; 
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        /* Memberikan efek gradien (memudar) di tepi kiri dan kanan */
+        .marquee-container::before,
+        .marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, white, transparent);
+        }
+
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, white, transparent);
+        }
+
+        .marquee-track {
+            display: inline-block;
+            animation: scroll-marquee 20s linear infinite; 
+        }
+
+        /* Animasi akan berhenti (pause) saat mouse diarahkan ke logo */
+        .marquee-track:hover {
+            animation-play-state: paused; 
+        }
+
+        /* === PERBAIKAN UNTUK LOGO BERWARNA PUTIH === */
+        .logo-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 90px; 
+            width: 180px;
+            margin: 0 30px;
+            background-color: #0f172a; 
+            border: 1px solid #1e293b; 
+            border-radius: 8px;
+            vertical-align: middle;
+            transition: transform 0.3s;
+            padding: 15px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        }
+
+        .logo-box:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+        }
+
+        @keyframes scroll-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* === FITUR 4: AI CHATBOT WIDGET === */
+        .ai-chat-widget {
+            position: fixed;
+            bottom: 105px; 
+            right: 30px;
+            z-index: 9998;
+            font-family: inherit;
+        }
+
+        .ai-chat-btn {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .ai-chat-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .ai-chat-window {
+            display: none; 
+            flex-direction: column;
+            width: 350px;
+            height: 450px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .ai-chat-window.active {
+            display: flex; 
+        }
+
+        .ai-chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-chat-header h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .ai-chat-close {
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f8fafc;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        .msg.bot {
+            background-color: #e2e8f0;
+            color: var(--primary-color);
+            align-self: flex-start;
+        }
+
+        .msg.user {
+            background-color: var(--secondary-color);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chat-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .opt-btn {
+            background-color: white;
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .opt-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .ai-chat-input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #e2e8f0;
+            background-color: white;
+        }
+
+        .ai-chat-input-area input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .ai-chat-send {
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            font-weight: bold;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .ai-chat-window {
+                width: 300px;
+                height: 400px;
+            }
+        }
+
+        /* === FITUR 5: TOMBOL UNDUH E-KATALOG === */
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-left: 15px; 
+        }
+
+        .btn-download:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-download svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor; 
+        }
+
+        @media (max-width: 768px) {
+            .btn-download {
+                margin-left: 0;
+                margin-top: 15px;
+                display: flex;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -316,7 +628,10 @@
 
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">TextileCorp</a>
+            <a href="#" class="logo-wrapper">
+                <img src="logo.png" class="logo-img" alt="TextileCorp Logo">
+                <span class="logo-text">TextileCorp</span>
+            </a>
 
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
@@ -338,13 +653,19 @@
         <h1>Premium Quality Yarn and Fabric for Your Industrial Needs</h1>
         <p>We are a leading textile manufacturer combining modern technology and high-quality materials to produce perfect weaves.</p>
         <a href="#kontak" class="btn">Contact Us Now</a>
+        <a href="ekatalog.pdf" download="ekatalog.pdf" class="btn-download">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+            </svg>
+            Download E-Catalog
+        </a>
     </section>
 
     <section id="tentang" class="section reveal">
         <h2 class="section-title">About Us</h2>
         <div class="about-content">
             <div class="about-image">
-                [Textile Factory/Machinery Photo Area]
+                <img src="mesin.jpg" class="about-img" alt="TextileCorp Factory">
             </div>
             <div class="about-text">
                 <h3>Company History</h3>
@@ -358,20 +679,49 @@
     <section id="produk" class="section services reveal">
         <h2 class="section-title">Our Featured Products</h2>
         <div class="grid-cards">
-            <div class="card">
-                <div class="card-img-placeholder">[100% Cotton Yarn Photo]</div>
+            <div class="card reveal">
+                <div class="img-zoom-container">
+                    <img src="https://www.littlegrandecraft.com/image-product/img700-1563691271.jpg" alt="100% Cotton Yarn" class="zoom-img">
+                </div>
                 <h3>100% Cotton Yarn</h3>
                 <p>Made from selected cotton fibers, highly soft, strong, and perfectly suited for daily apparel and medical textile production.</p>
             </div>
-            <div class="card">
-                <div class="card-img-placeholder">[Polyester Fabric Photo]</div>
+            
+            <div class="card reveal">
+                <div class="img-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?auto=format&fit=crop&w=600&q=80" alt="Polyester Fabric" class="zoom-img">
+                </div>
                 <h3>Polyester Fabric</h3>
                 <p>Durable, wrinkle-resistant, and quick-drying fabric. Ideal for sportswear, jackets, and factory uniforms.</p>
             </div>
-            <div class="card">
-                <div class="card-img-placeholder">[Custom Order Photo]</div>
+            
+            <div class="card reveal">
+                <div class="img-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80" alt="Custom Dyeing" class="zoom-img">
+                </div>
                 <h3>Custom Fabric & Dyeing</h3>
                 <p>Accepting custom specifications, including material blends, thickness, and large-scale customized dyeing processes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="marquee-section reveal">
+        <h2 class="section-title" style="margin-bottom: 30px;">Trusted By</h2>
+        <div class="marquee-container">
+            <div class="marquee-track">
+                
+                <div class="logo-box">Boutique A</div>
+                <div class="logo-box">Brand B</div>
+                <div class="logo-box">Convection C</div>
+                <div class="logo-box">Garment D</div>
+                <div class="logo-box">Fashion E</div>
+                
+                <div class="logo-box"><img src="https://indoadmin.indorama.co.id/uploads/1774258493492_logo_2_1dffa34f0b.svg" alt="Logo Brand A"></div>
+                <div class="logo-box">Brand B</div>
+                <div class="logo-box">Convection C</div>
+                <div class="logo-box">Garment D</div>
+                <div class="logo-box">Fashion E</div>
+
             </div>
         </div>
     </section>
@@ -394,7 +744,7 @@
         <p>&copy; 2026 TextileCorp. All Rights Reserved.</p>
     </footer>
 
-    <a href="https://wa.me/6282310531691?text=Hello%20TextileCorp,%20I%20am%20interested%20in%20your%20products%20and%20would%20like%20to%20inquire%20further." class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contact us on WhatsApp">
+    <a href="https://wa.me/6282310531691?text=Hello%20TextileCorp,%20I%20am%20interested%20in%20your%20products%20and%20would%20like%20to%20inquire%20further." class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contact us via WhatsApp">
         <svg viewBox="0 0 32 32" class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.05 2.05c-7.7 0-14 6.3-14 14 0 2.45.65 4.8 1.85 6.95L2 30l7.2-1.9c2.05 1.1 4.35 1.7 6.8 1.7 7.7 0 14-6.3 14-14s-6.3-14-13.95-14zm0 25.65c-2.1 0-4.15-.55-5.95-1.6l-.4-.25-4.4 1.15 1.2-4.3-.25-.45c-1.15-1.85-1.75-4-1.75-6.2 0-6.35 5.15-11.5 11.5-11.5s11.5 5.15 11.5 11.5-5.15 11.5-11.5 11.5zm6.3-8.6c-.35-.15-2.05-1-2.35-1.1-.3-.1-.5-.15-.7.15s-.9 1.1-1.1 1.35c-.2.25-.4.25-.75.1-2.1-1-3.65-2.4-5.1-4.65-.2-.3-.05-.45.1-.6.15-.15.35-.4.5-.6.15-.2.2-.35.3-.55.1-.2.05-.4-.05-.55-.1-.15-.7-1.7-1-2.35-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.5.05-.75.35-.25.3-1 1-1 2.45s1.05 2.85 1.2 3.05c.15.2 2.05 3.15 5 4.4 1.85.8 2.6.9 3.55.75 1-.15 2.05-.85 2.35-1.65.3-.85.3-1.6.2-1.75-.1-.15-.3-.25-.65-.4z"/>
         </svg>
@@ -420,23 +770,134 @@
         hiddenElements.forEach((el) => observer.observe(el));
     </script>
 
-    <!-- SCRIPT MENU HAMBURGER (MOBILE) -->
     <script>
         const mobileMenu = document.getElementById('mobile-menu');
         const navMenu = document.querySelector('.nav-links');
 
-        // Memunculkan/menyembunyikan menu saat ikon hamburger diklik
         mobileMenu.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
 
-        // Menyembunyikan menu otomatis saat salah satu link diklik (Opsional tapi bagus)
         const navItems = document.querySelectorAll('.nav-links a');
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 navMenu.classList.remove('active');
             });
         });
+    </script>
+
+    <script>
+        const zoomContainers = document.querySelectorAll('.img-zoom-container');
+
+        zoomContainers.forEach(container => {
+            const img = container.querySelector('.zoom-img');
+
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                img.style.transformOrigin = `${x}% ${y}%`;
+            });
+
+            container.addEventListener('mouseleave', () => {
+                img.style.transformOrigin = 'center center';
+            });
+        });
+    </script>
+
+    <div class="ai-chat-widget">
+        <div class="ai-chat-btn" id="ai-chat-toggle">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </div>
+
+        <div class="ai-chat-window" id="ai-chat-window">
+            <div class="ai-chat-header">
+                <h4>TexBot - Textile AI Assistant</h4>
+                <span class="ai-chat-close" id="ai-chat-close">&times;</span>
+            </div>
+            <div class="ai-chat-messages" id="ai-chat-messages">
+                <div class="msg bot">
+                    Hello! Welcome to TextileCorp. I am TexBot, your AI assistant. How can I help you today?
+                    <div class="chat-options">
+                        <button class="opt-btn" onclick="sendOption('Minimum Order?')">Minimum Order?</button>
+                        <button class="opt-btn" onclick="sendOption('Material Types?')">Material Types?</button>
+                        <button class="opt-btn" onclick="sendOption('Factory Location?')">Factory Location?</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ai-chat-input-area">
+                <input type="text" id="ai-chat-input" placeholder="Type your message here...">
+                <button class="ai-chat-send" id="ai-chat-send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatToggle = document.getElementById('ai-chat-toggle');
+        const chatClose = document.getElementById('ai-chat-close');
+        const chatWindow = document.getElementById('ai-chat-window');
+        const chatMessages = document.getElementById('ai-chat-messages');
+        const chatInput = document.getElementById('ai-chat-input');
+        const chatSend = document.getElementById('ai-chat-send');
+
+        chatToggle.addEventListener('click', () => chatWindow.classList.toggle('active'));
+        chatClose.addEventListener('click', () => chatWindow.classList.remove('active'));
+
+        function handleSendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            appendMessage(text, 'user');
+            chatInput.value = '';
+
+            setTimeout(() => {
+                const botReply = getBotResponse(text);
+                appendMessage(botReply, 'bot');
+            }, 800);
+        }
+
+        chatSend.addEventListener('click', handleSendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSendMessage();
+        });
+
+        function appendMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('msg', sender);
+            msgDiv.innerHTML = text;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight; 
+        }
+
+        function sendOption(optionText) {
+            appendMessage(optionText, 'user');
+            setTimeout(() => {
+                const botReply = getBotResponse(optionText);
+                appendMessage(botReply, 'bot');
+            }, 600);
+        }
+
+        function getBotResponse(input) {
+            const text = input.toLowerCase();
+
+            if (text.includes('minimum') || text.includes('order') || text.includes('buy')) {
+                return "For standard cotton yarn and polyester fabrics, our industrial Minimum Order Quantity (MOQ) starts at 100 rolls/bales. For specific custom colors, please contact our sales team via WhatsApp.";
+            }
+            if (text.includes('material') || text.includes('fabric') || text.includes('yarn') || text.includes('product') || text.includes('type')) {
+                return "We produce 100% Cotton Yarn, high-quality Polyester Fabric, and cater to custom material blends and industrial dyeing specifications.";
+            }
+            if (text.includes('location') || text.includes('address') || text.includes('factory')) {
+                return "Our main factory is located at Jl. Industri Raya No. 88, Textile Factory Area, Indonesia. You can see our full map and address at the bottom of this website.";
+            }
+            if (text.includes('price') || text.includes('cost') || text.includes('quote')) {
+                return "Our pricing is flexible depending on the order volume (wholesale/industrial scale). Please click the WhatsApp icon on the bottom right to get an official quotation directly from our team.";
+            }
+            
+            return "Thank you for your message. We have noted your inquiry. For a faster response regarding special pricing or technical fabric specifications, you can also speak directly with our expert team via the floating WhatsApp button on the screen.";
+        }
     </script>
 
 </body>
