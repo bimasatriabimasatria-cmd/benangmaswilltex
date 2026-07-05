@@ -202,16 +202,57 @@
             margin-top: 40px;
         }
 
+        /* === TAMPILAN AWAL MENU HAMBURGER (Sembunyi di PC) === */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
         /* === RESPONSIVE (UNTUK HP) === */
         @media (max-width: 768px) {
             .about-content, .contact-content {
                 flex-direction: column;
             }
-            .nav-links {
-                display: none; 
-            }
             .hero h1 {
                 font-size: 2rem;
+            }
+            
+            /* Tampilkan Ikon Hamburger di HP */
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Ubah Menu Menjadi Dropdown ke Bawah */
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Posisikan pas di bawah header */
+                left: -100%; /* Sembunyikan menunya ke luar layar kiri */
+                width: 100%;
+                background-color: #ffffff;
+                text-align: center;
+                transition: left 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                padding: 20px 0;
+            }
+
+            /* Class ini akan ditambahkan oleh JavaScript saat tombol diklik */
+            .nav-links.active {
+                left: 0; /* Tarik menu masuk ke layar */
+            }
+
+            .nav-links li {
+                margin: 15px 0;
             }
         }
 
@@ -276,6 +317,13 @@
     <header>
         <div class="nav-container">
             <a href="#" class="logo">TextileCorp</a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="#beranda">Home</a></li>
                 <li><a href="#tentang">About Us</a></li>
@@ -370,6 +418,25 @@
 
         const hiddenElements = document.querySelectorAll('.reveal');
         hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+
+    <!-- SCRIPT MENU HAMBURGER (MOBILE) -->
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-links');
+
+        // Memunculkan/menyembunyikan menu saat ikon hamburger diklik
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Menyembunyikan menu otomatis saat salah satu link diklik (Opsional tapi bagus)
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
     </script>
 
 </body>
