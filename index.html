@@ -162,20 +162,32 @@
             transform: translateY(-5px);
         }
 
-        .card-img-placeholder {
-            background-color: #e2e8f0;
-            height: 150px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-        }
-
         .card h3 {
             margin-bottom: 15px;
             color: var(--primary-color);
+        }
+
+        /* === FITUR 1: HOVER-TO-ZOOM (GAMBAR PRODUK) === */
+        .img-zoom-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .zoom-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memastikan gambar pas di dalam kotak */
+            transition: transform 0.3s ease; /* Transisi halus saat kursor masuk/keluar */
+            transform-origin: center center; /* Titik awal zoom */
+        }
+
+        .img-zoom-container:hover .zoom-img {
+            transform: scale(2); /* Seberapa besar efek zoom-nya (2 = 200%) */
+            cursor: crosshair; /* Mengubah kursor jadi tanda plus (+) */
         }
 
         /* === BAGIAN KONTAK === */
@@ -368,20 +380,28 @@
         <h2 class="section-title">Produk Unggulan Kami</h2>
         <div class="grid-cards">
             <!-- Produk 1 -->
-            <div class="card">
-                <div class="card-img-placeholder">[Foto Benang Katun]</div>
+            <div class="card reveal">
+                <div class="img-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1584288417036-7cbdfa507fa7?auto=format&fit=crop&w=600&q=80" alt="Benang Katun" class="zoom-img">
+                </div>
                 <h3>Benang Katun 100%</h3>
                 <p>Terbuat dari serat kapas pilihan, sangat lembut, kuat, dan cocok untuk produksi pakaian sehari-hari maupun bahan medis.</p>
             </div>
+            
             <!-- Produk 2 -->
-            <div class="card">
-                <div class="card-img-placeholder">[Foto Kain Polyester]</div>
+            <div class="card reveal">
+                <div class="img-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?auto=format&fit=crop&w=600&q=80" alt="Kain Polyester" class="zoom-img">
+                </div>
                 <h3>Kain Polyester</h3>
                 <p>Kain tahan lama yang anti-kusut dan cepat kering. Sangat ideal untuk pembuatan pakaian olahraga, jaket, dan seragam pabrik.</p>
             </div>
+            
             <!-- Produk 3 -->
-            <div class="card">
-                <div class="card-img-placeholder">[Foto Custom Order]</div>
+            <div class="card reveal">
+                <div class="img-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80" alt="Pewarnaan Kustom" class="zoom-img">
+                </div>
                 <h3>Pewarnaan & Kain Kustom</h3>
                 <p>Menerima pesanan kain dengan spesifikasi khusus, baik dari segi campuran bahan, ketebalan, maupun pewarnaan skala besar.</p>
             </div>
@@ -457,6 +477,32 @@
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+            });
+        });
+    </script>
+
+    <!-- SCRIPT FITUR 1: HOVER-TO-ZOOM -->
+    <script>
+        const zoomContainers = document.querySelectorAll('.img-zoom-container');
+
+        zoomContainers.forEach(container => {
+            const img = container.querySelector('.zoom-img');
+
+            container.addEventListener('mousemove', (e) => {
+                // Mengambil ukuran dan posisi kotak gambar
+                const rect = container.getBoundingClientRect();
+                
+                // Menghitung posisi mouse di dalam kotak (dalam persentase)
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                // Mengubah titik fokus zoom mengikuti posisi mouse
+                img.style.transformOrigin = `${x}% ${y}%`;
+            });
+
+            // Mengembalikan gambar ke tengah saat mouse keluar dari kotak
+            container.addEventListener('mouseleave', () => {
+                img.style.transformOrigin = 'center center';
             });
         });
     </script>
