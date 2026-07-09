@@ -5,367 +5,360 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="logo.jpg">
     <title>PT. BENANG MAS WILLTEX - Pabrik Tekstil & Benang</title>
-    <meta name="description" content="TextileCorp adalah produsen dan pabrik tekstil terkemuka di Indonesia yang memproduksi benang katun 100%, kain polyester, dan menerima pesanan kustom berkualitas ekspor.">
+    <meta name="description" content="PT. Benang Mas Willtex adalah produsen dan pabrik tekstil terkemuka di Indonesia yang memproduksi benang katun 100%, kain polyester, dan menerima pesanan kustom berkualitas ekspor.">
     <meta name="keywords" content="pabrik tekstil, produsen benang, kain polyester, katun, tekstil indonesia, bmwillmex">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
         /* === PENGATURAN DASAR === */
         :root {
-            --primary-color: #0f172a; /* Warna utama (Biru Gelap) */
-            --secondary-color: #3b82f6; /* Warna aksen (Biru Terang) */
+            /* TEMA TEKSTIL: Indigo Dye, Emas Benang, & Raw Cotton */
+            --primary-color: #1a2b4c; /* Biru Indigo Gelap */
+            --secondary-color: #d4af37; /* Emas Klasik (Benang Mas) */
             --text-color: #333333;
-            --bg-light: #f8fafc;
+            --text-light: #555555;
+            --bg-cotton: #fdfbf7; /* Warna Putih Tulang / Kapas Mentah */
+            --border-stitch: 1px dashed var(--secondary-color);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-family: 'Poppins', sans-serif; /* Font modern untuk teks */
+            background-color: var(--bg-cotton);
+            /* Pola titik halus menyerupai serat kain (opsional) */
+            background-image: radial-gradient(#e5e0d8 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        h1, h2, h3, h4, .logo-text {
+            font-family: 'Playfair Display', serif; /* Font elegan untuk heading */
         }
 
         /* === BAGIAN HEADER & NAVIGASI === */
         header {
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            background-color: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
         }
 
+        /* Detail border menyerupai jahitan di bawah header */
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            border-bottom: var(--border-stitch);
+        }
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 15px 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* === PENGATURAN LOGO HEADER BARU === */
         .logo-wrapper {
             display: flex;
             align-items: center;
-            gap: 12px; /* Jarak antara gambar logo dan teks merk */
+            gap: 12px;
             text-decoration: none;
         }
 
         .logo-img {
-            height: 40px; /* KUNCI UTAMA: Membatasi tinggi logo agar pas di header dan tidak menutupi halaman */
-            width: auto;  /* Lebar gambar akan menyesuaikan secara proporsional agar tidak gepeng */
+            height: 45px;
+            width: auto;
             object-fit: contain;
         }
 
         .logo-text {
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--primary-color);
+            letter-spacing: 0.5px;
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--primary-color);
             font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: color 0.3s;
+            position: relative;
         }
 
+        /* Animasi garis bawah seperti benang yang ditarik */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
         .nav-links a:hover {
             color: var(--secondary-color);
         }
 
         /* === BAGIAN HERO (BANNER UTAMA) === */
         .hero {
-            background-color: var(--primary-color);
+            /* Background gradien dipadukan dengan tekstur kain/denim dari unsplash */
+            background: linear-gradient(135deg, rgba(26, 43, 76, 0.92), rgba(26, 43, 76, 0.95)), url('https://images.unsplash.com/photo-1605289982774-9a6fef564df8?w=1600&q=80') center/cover;
             color: white;
-            padding: 150px 5% 100px;
+            padding: 180px 5% 120px;
             text-align: center;
+            position: relative;
+            border-bottom: 5px solid var(--secondary-color);
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            color: #cbd5e1;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #e2e8f0;
+            font-weight: 300;
         }
 
+        /* Desain Tombol ala Label Kain */
         .btn {
             display: inline-block;
             background-color: var(--secondary-color);
-            color: white;
-            padding: 12px 30px;
+            color: var(--primary-color);
+            padding: 14px 35px;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s;
+            border: none;
+            /* Efek jahitan dalam */
+            outline: 1px dashed rgba(26, 43, 76, 0.5);
+            outline-offset: -6px;
         }
 
         .btn:hover {
-            background-color: #2563eb;
+            background-color: #e6c860;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
-        /* === BAGIAN TENTANG KAMI === */
+        /* === FITUR 5: TOMBOL UNDUH E-KATALOG === */
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: transparent;
+            color: white;
+            border: 2px solid var(--secondary-color);
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            margin-left: 20px;
+            outline: 1px dashed var(--secondary-color);
+            outline-offset: -6px;
+        }
+
+        .btn-download:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .btn-download svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* === SECTIONS UMUM === */
         .section {
-            padding: 80px 5%;
+            padding: 100px 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
             color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
+        /* Ornamen garis & gunting/benang di bawah judul */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        /* === BAGIAN TENTANG KAMI === */
         .about-content {
             display: flex;
+            flex-direction: column;
             gap: 40px;
-            align-items: center;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        /* === PERBAIKAN TATA LETAK TENTANG KAMI (ATAS & BAWAH) === */
-        .about-content {
-            display: flex;
-            flex-direction: column; /* KUNCI UTAMA: Mengubah susunan menjadi atas-bawah */
-            gap: 30px; /* Jarak antara gambar dan teks di bawahnya */
         }
 
         .about-image {
-            width: 100%; /* Membuat wadah gambar membentang penuh ke samping */
-            border-radius: 10px;
-            overflow: hidden; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            width: 100%;
+            position: relative;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        /* Ornamen jahitan di luar gambar */
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: var(--border-stitch);
+            pointer-events: none;
         }
 
         .about-img {
             width: 100%;
-            max-height: 500px; /* Membatasi tinggi maksimal agar tidak terlalu raksasa/memakan seluruh layar PC */
-            object-fit: cover; /* Menjaga agar gambar tidak gepeng dan proporsional */
+            max-height: 500px;
+            object-fit: cover;
             display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-image:hover .about-img {
-            transform: scale(1.02);
+            filter: grayscale(20%) contrast(110%);
         }
 
         .about-text {
             width: 100%;
-            text-align: justify; /* Membuat teks rata kanan-kiri agar rapi di bawah gambar lebar */
+            text-align: justify;
+            color: var(--text-light);
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
         }
 
-        /* === BAGIAN LAYANAN / PRODUK === */
+        /* === BAGIAN PRODUK (KARTU KAIN/BENANG) === */
         .services {
-            background-color: var(--bg-light);
+            background-color: white;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
         }
 
         .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
 
         .card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            background: var(--bg-cotton);
+            padding: 20px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: transform 0.4s ease;
+            position: relative;
+            /* Tampilan Label/Swatch Kain */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e2ddc8;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px dashed #d1c8b0;
+            pointer-events: none;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            background: white;
         }
 
         .card h3 {
             margin-bottom: 15px;
             color: var(--primary-color);
+            font-size: 1.4rem;
         }
 
-        /* === FITUR 1: HOVER-TO-ZOOM (GAMBAR PRODUK) === */
         .img-zoom-container {
             width: 100%;
-            height: 200px;
+            height: 250px;
             overflow: hidden;
-            border-radius: 5px;
             margin-bottom: 20px;
             position: relative;
+            background: #eee;
         }
 
         .zoom-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Memastikan gambar pas di dalam kotak */
-            transition: transform 0.3s ease; /* Transisi halus saat kursor masuk/keluar */
-            transform-origin: center center; /* Titik awal zoom */
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            transform-origin: center center;
         }
 
         .img-zoom-container:hover .zoom-img {
-            transform: scale(2); /* Seberapa besar efek zoom-nya (2 = 200%) */
-            cursor: crosshair; /* Mengubah kursor jadi tanda plus (+) */
+            transform: scale(2);
+            cursor: crosshair;
         }
 
-        /* === BAGIAN KONTAK === */
-        .contact-content {
-            display: flex;
-            gap: 40px;
-            justify-content: space-between;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-info p {
-            margin-bottom: 15px;
-        }
-
-        /* === FOOTER === */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        /* === TAMPILAN AWAL MENU HAMBURGER (Sembunyi di PC) === */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        
-        .menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background-color: var(--primary-color);
-            margin: 4px 0;
-            transition: all 0.3s ease;
-        }
-
-        /* === RESPONSIVE (UNTUK HP) === */
-        @media (max-width: 768px) {
-            .about-content, .contact-content {
-                flex-direction: column;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            /* Tampilkan Ikon Hamburger di HP */
-            .menu-toggle {
-                display: flex;
-            }
-
-            /* Ubah Menu Menjadi Dropdown ke Bawah */
-            .nav-links {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 70px; /* Posisikan pas di bawah header */
-                left: -100%; /* Sembunyikan menunya ke luar layar kiri */
-                width: 100%;
-                background-color: #ffffff;
-                text-align: center;
-                transition: left 0.3s ease;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                padding: 20px 0;
-            }
-
-            /* Class ini akan ditambahkan oleh JavaScript saat tombol diklik */
-            .nav-links.active {
-                left: 0; /* Tarik menu masuk ke layar */
-            }
-
-            .nav-links li {
-                margin: 15px 0;
-            }
-        }
-
-        /* === WHATSAPP FLOATING WIDGET === */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50px;
-            text-align: center;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #20b858;
-        }
-
-        .whatsapp-icon {
-            width: 35px;
-            height: 35px;
-            fill: white;
-        }
-
-        /* Penyesuaian untuk layar HP agar tidak terlalu besar */
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                right: 20px;
-            }
-            .whatsapp-icon {
-                width: 30px;
-                height: 30px;
-            }
-        }
-
-        /* === ANIMASI GULIR (SCROLL ANIMATION) === */
-        .reveal {
-            opacity: 0; /* Elemen disembunyikan awalnya */
-            transform: translateY(50px); /* Posisi diturunkan 50 pixel */
-            /*transition: all 0.8s ease-out; /* Kecepatan dan gaya animasi */
-        }
-
-        .reveal.active {
-            opacity: 1; /* Elemen dimunculkan */
-            transform: translateY(0); /* Posisi dikembalikan ke tempat semula */
-            transition: all 0.8s ease-out;
-        }
-
-        /* === FITUR 2: INFINITE LOGO MARQUEE === */
+        /* === LOGO MARQUEE KLIEN === */
         .marquee-section {
-            background-color: white;
+            background-color: var(--primary-color);
             padding: 60px 0;
             overflow: hidden; 
+        }
+        
+        .marquee-section .section-title {
+            color: white;
         }
 
         .marquee-container {
@@ -375,7 +368,6 @@
             position: relative;
         }
 
-        /* Memberikan efek gradien (memudar) di tepi kiri dan kanan */
         .marquee-container::before,
         .marquee-container::after {
             content: '';
@@ -388,584 +380,556 @@
 
         .marquee-container::before {
             left: 0;
-            background: linear-gradient(to right, white, transparent);
+            background: linear-gradient(to right, var(--primary-color), transparent);
         }
 
         .marquee-container::after {
             right: 0;
-            background: linear-gradient(to left, white, transparent);
+            background: linear-gradient(to left, var(--primary-color), transparent);
         }
 
         .marquee-track {
             display: inline-block;
-            /* 20s adalah kecepatan, ubah angkanya jika ingin lebih cepat/lambat */
-            animation: scroll-marquee 20s linear infinite; 
+            animation: scroll-marquee 25s linear infinite; 
         }
 
-        /* Animasi akan berhenti (pause) saat mouse diarahkan ke logo */
         .marquee-track:hover {
             animation-play-state: paused; 
         }
 
-        /* === PERBAIKAN UNTUK LOGO BERWARNA PUTIH === */
         .logo-box {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             height: 90px; 
             width: 180px;
-            margin: 0 30px;
-            background-color: #0f172a; /* DIUBAH KE GELAP: Menggunakan warna utama website (biru gelap) agar logo putih kontras */
-            border: 1px solid #1e293b; /* DIUBAH KE GELAP: Garis pembatas disesuaikan menjadi warna abu-abu gelap */
-            border-radius: 8px;
+            margin: 0 20px;
+            background-color: white;
+            border-radius: 2px;
             vertical-align: middle;
-            transition: transform 0.3s;
-            padding: 15px; /* Jarak aman di dalam kotak */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Bayangan disesuaikan untuk kotak gelap */
+            transition: opacity 0.3s;
+            padding: 15px;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            color: var(--primary-color);
+            box-shadow: 3px 3px 0 var(--secondary-color); /* Efek offset shadow */
         }
 
-        .logo-box:hover {
-            transform: scale(1.05);
-        }
-
-        /* KUNCI UTAMA GAMBAR TIDAK TERPOTONG */
         .logo-box img {
             width: 100%;
             height: 100%;
             object-fit: contain; 
         }
 
-        /* Kunci animasinya: bergeser dari 0% ke -50% */
         @keyframes scroll-marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* === FITUR 4: AI CHATBOT WIDGET === */
-        .ai-chat-widget {
-            position: fixed;
-            bottom: 105px; /* Diletakkan di atas tombol WhatsApp (30px + 60px + 15px) */
-            right: 30px;
-            z-index: 9998;
-            font-family: inherit;
+        /* === BAGIAN KONTAK === */
+        .contact-content {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            background: white;
+            padding: 50px;
+            border: 1px solid #eaeaea;
+            position: relative;
+        }
+        
+        /* Pita dekorasi kotak kontak */
+        .contact-content::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--primary-color),
+                var(--primary-color) 10px,
+                var(--secondary-color) 10px,
+                var(--secondary-color) 20px
+            );
         }
 
-        /* Tombol Buat Buka Chat */
+        .contact-info {
+            flex: 1;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed var(--secondary-color);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: var(--primary-color);
+            color: #d1c8b0;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 3px solid var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        /* === MENU HAMBURGER (RESPONSIVE) === */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle .bar {
+            width: 25px;
+            height: 2px;
+            background-color: var(--primary-color);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .menu-toggle { display: flex; }
+            
+            .nav-links {
+                flex-direction: column;
+                position: absolute;
+                top: 76px; 
+                left: -100%; 
+                width: 100%;
+                background-color: rgba(253, 251, 247, 0.98);
+                text-align: center;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+                padding: 30px 0;
+                border-bottom: 2px solid var(--primary-color);
+            }
+
+            .nav-links.active { left: 0; }
+            .btn-download { margin-left: 0; margin-top: 15px; display: flex; justify-content: center; }
+        }
+
+        /* === WHATSAPP WIDGET & AI CHAT (Disesuaikan Temanya) === */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-icon { width: 35px; height: 35px; fill: white; }
+
+        .ai-chat-widget {
+            position: fixed;
+            bottom: 105px; 
+            right: 30px;
+            z-index: 9998;
+        }
+
         .ai-chat-btn {
             width: 60px;
             height: 60px;
             background-color: var(--primary-color);
-            color: white;
+            color: var(--secondary-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid var(--secondary-color);
             transition: transform 0.3s;
         }
 
-        .ai-chat-btn:hover {
-            transform: scale(1.1);
-        }
+        .ai-chat-btn:hover { transform: scale(1.1); }
 
-        /* Jendela Chat Box */
         .ai-chat-window {
-            display: none; /* Tersembunyi di awal */
+            display: none; 
             flex-direction: column;
             width: 350px;
-            height: 450px;
+            height: 480px;
             background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             position: absolute;
             bottom: 75px;
             right: 0;
             overflow: hidden;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--secondary-color);
         }
 
-        .ai-chat-window.active {
-            display: flex; /* Muncul saat aktif */
-        }
+        .ai-chat-window.active { display: flex; }
 
-        /* Header Chat */
         .ai-chat-header {
             background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
+            color: var(--secondary-color);
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 2px solid var(--secondary-color);
         }
 
-        .ai-chat-header h4 {
-            margin: 0;
-            font-size: 1rem;
-        }
+        .ai-chat-header h4 { font-size: 1.1rem; margin: 0; }
+        .ai-chat-close { cursor: pointer; font-size: 1.5rem; }
 
-        .ai-chat-close {
-            cursor: pointer;
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
-        /* Area Pesan Obrolan */
         .ai-chat-messages {
             flex: 1;
-            padding: 15px;
+            padding: 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            background-color: #f8fafc;
+            gap: 15px;
+            background-color: var(--bg-cotton);
         }
 
         .msg {
-            max-width: 80%;
-            padding: 10px 14px;
-            border-radius: 10px;
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 8px;
             font-size: 0.9rem;
+            position: relative;
         }
 
         .msg.bot {
-            background-color: #e2e8f0;
-            color: var(--primary-color);
+            background-color: white;
+            color: var(--text-color);
             align-self: flex-start;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .msg.user {
-            background-color: var(--secondary-color);
+            background-color: var(--primary-color);
             color: white;
             align-self: flex-end;
         }
 
-        /* Tombol Pilihan Cepat (Opsi FAQ) */
         .chat-options {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
-            margin-top: 5px;
+            gap: 8px;
+            margin-top: 10px;
         }
 
         .opt-btn {
             background-color: white;
-            border: 1px solid var(--secondary-color);
-            color: var(--secondary-color);
+            border: 1px dashed var(--secondary-color);
+            color: var(--primary-color);
             padding: 6px 12px;
-            border-radius: 20px;
+            border-radius: 4px;
             font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.2s;
+            font-family: inherit;
         }
 
         .opt-btn:hover {
             background-color: var(--secondary-color);
-            color: white;
+            color: var(--primary-color);
         }
 
-        /* Input Area di Bagian Bawah */
         .ai-chat-input-area {
             display: flex;
-            padding: 10px;
-            border-top: 1px solid #e2e8f0;
+            padding: 15px;
+            border-top: 1px solid #eaeaea;
             background-color: white;
         }
 
         .ai-chat-input-area input {
             flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 20px;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             outline: none;
-            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .ai-chat-input-area input:focus {
+            border-color: var(--primary-color);
         }
 
         .ai-chat-send {
             background: none;
             border: none;
-            color: var(--secondary-color);
-            font-weight: bold;
-            padding: 0 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 0 15px;
             cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.85rem;
         }
 
-        /* Penyesuaian Layar HP */
-        @media (max-width: 480px) {
-            .ai-chat-window {
-                width: 300px;
-                height: 400px;
-            }
+        /* === ANIMASI GULIR === */
+        .reveal {
+            opacity: 0; 
+            transform: translateY(40px); 
         }
 
-        /* === FITUR 5: TOMBOL UNDUH E-KATALOG === */
-        .btn-download {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: transparent;
-            color: var(--secondary-color);
-            border: 2px solid var(--secondary-color);
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-left: 15px; /* Memberi jarak jika ditaruh di sebelah tombol lain */
-        }
-
-        .btn-download:hover {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        .btn-download svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor; /* Warna ikon otomatis mengikuti warna teks tombol */
-        }
-
-        /* Penyesuaian jarak tombol di layar HP agar tidak bertabrakan */
-        @media (max-width: 768px) {
-            .btn-download {
-                margin-left: 0;
-                margin-top: 15px;
-                display: flex;
-                justify-content: center;
-            }
+        .reveal.active {
+            opacity: 1; 
+            transform: translateY(0); 
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
 
     </style>
 </head>
 <body>
 
-    <!-- HEADER / NAVIGASI -->
     <header>
         <div class="nav-container">
-            <!-- GANTI NAMA LOGO DI SINI -->
             <a href="#" class="logo-wrapper">
-                <img src="logo.jpg" class="logo-img" alt="Logo TextileCorp">
-                <span class="logo-text">PT. BENANG MAS WILLTEX</span>
+                <img src="logo.jpg" class="logo-img" alt="Logo">
+                <span class="logo-text">BENANG MAS WILLTEX</span>
             </a>
-
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-
             <ul class="nav-links">
                 <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#tentang">Tentang Kami</a></li>
-                <li><a href="#produk">Produk</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#produk">Katalog</a></li>
                 <li><a href="#kontak">Kontak</a></li>
-                <li><a href="en.html" style="color: var(--secondary-color); font-weight: bold;">EN</a></li>
+                <li><a href="en.html" style="color: var(--secondary-color); font-weight: 700;">EN</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <section id="beranda" class="hero reveal">
-        <!-- GANTI HEADLINE DI SINI -->
-        <h1>Kualitas Benang dan Kain Terbaik untuk Kebutuhan Industri Anda</h1>
-        <p>Kami adalah produsen tekstil terkemuka yang memadukan teknologi modern dan material berkualitas tinggi untuk menghasilkan rajutan sempurna.</p>
-        <a href="#kontak" class="btn">Hubungi Kami Sekarang</a>
-        <a href="ekatalog.pdf" download="ekatalog.pdf" class="btn-download">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
-            </svg>
-            Unduh E-Katalog
-        </a>
+        <h1>Mahakarya Dalam Setiap Helaian Benang</h1>
+        <p>Memadukan teknologi tekstil presisi tinggi dengan material terbaik untuk menghasilkan kain dan benang berkualitas ekspor standar industri.</p>
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;">
+            <a href="#kontak" class="btn">Hubungi Kami</a>
+            <a href="ekatalog.pdf" download="ekatalog.pdf" class="btn-download">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+                </svg>
+                Unduh E-Katalog
+            </a>
+        </div>
     </section>
 
-    <!-- TENTANG KAMI -->
     <section id="tentang" class="section reveal">
-        <h2 class="section-title">Tentang Kami</h2>
+        <h2 class="section-title">Dedikasi Pada Kualitas</h2>
         <div class="about-content">
             <div class="about-image">
-                <img src="mesin.jpg">
+                <img src="mesin.jpg" class="about-img" alt="Mesin Pabrik Tekstil">
             </div>
             <div class="about-text">
-                <h3>Sejarah Perusahaan</h3>
-                <!-- GANTI PROFIL PERUSAHAAN DI SINI -->
-                <p>Berdiri sejak tahun 2005, TextileCorp bermula dari sebuah pabrik kecil dan kini telah berkembang menjadi salah satu manufaktur benang dan kain terbesar di skala nasional. Kami berkomitmen untuk menjaga standar kualitas ekspor.</p>
+                <h3>Warisan Tekstil Sejak 2005</h3>
+                <p>Berawal dari fasilitas produksi konvensional, PT. Benang Mas Willtex (BMW) telah bertransformasi menjadi manufaktur tekstil berskala nasional. Kami memastikan setiap proses—mulai dari *spinning*, *weaving*, hingga *dyeing*—diawasi dengan protokol standar kualitas (QC) yang sangat ketat untuk menyuplai kebutuhan *brand* dan pabrik konveksi di seluruh dunia.</p>
                 <br>
-                <p>Visi kami adalah menjadi pionir industri tekstil ramah lingkungan. Kami memproduksi berbagai jenis benang mulai dari katun, polyester, hingga rayon dengan kontrol kualitas yang sangat ketat.</p>
+                <p>Visi kami adalah memimpin inovasi tekstil yang efisien dan ramah lingkungan. Kami memproduksi varian benang katun, rajutan polyester, hingga campuran serat khusus yang dioptimalkan untuk daya tahan dan kenyamanan maksimal.</p>
             </div>
         </div>
     </section>
 
-    <!-- PRODUK DAN LAYANAN -->
     <section id="produk" class="section services reveal">
-        <h2 class="section-title">Produk Unggulan Kami</h2>
+        <h2 class="section-title">Katalog Premium</h2>
         <div class="grid-cards">
-            <!-- Produk 1 -->
             <div class="card reveal">
                 <div class="img-zoom-container">
                     <img src="https://www.littlegrandecraft.com/image-product/img700-1563691271.jpg" alt="Benang Katun" class="zoom-img">
                 </div>
-                <h3>Benang Katun 100%</h3>
-                <p>Terbuat dari serat kapas pilihan, sangat lembut, kuat, dan cocok untuk produksi pakaian sehari-hari maupun bahan medis.</p>
+                <h3>100% Pure Cotton Yarn</h3>
+                <p>Spintal dari serat kapas murni pilihan. Memberikan kelembutan ekstra, daya serap tinggi, serta kekuatan tarik optimal untuk produksi pakaian premium.</p>
             </div>
             
-            <!-- Produk 2 -->
             <div class="card reveal">
                 <div class="img-zoom-container">
                     <img src="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?auto=format&fit=crop&w=600&q=80" alt="Kain Polyester" class="zoom-img">
                 </div>
-                <h3>Kain Polyester</h3>
-                <p>Kain tahan lama yang anti-kusut dan cepat kering. Sangat ideal untuk pembuatan pakaian olahraga, jaket, dan seragam pabrik.</p>
+                <h3>Industrial Polyester Fabric</h3>
+                <p>Kain rajutan struktural yang anti-kusut, tangguh, dan cepat kering. Solusi sempurna untuk *sportswear*, jaket *outdoor*, dan seragam manufaktur.</p>
             </div>
             
-            <!-- Produk 3 -->
             <div class="card reveal">
                 <div class="img-zoom-container">
-                    <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80" alt="Pewarnaan Kustom" class="zoom-img">
+                    <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80" alt="Kustom" class="zoom-img">
                 </div>
-                <h3>Pewarnaan & Kain Kustom</h3>
-                <p>Menerima pesanan kain dengan spesifikasi khusus, baik dari segi campuran bahan, ketebalan, maupun pewarnaan skala besar.</p>
+                <h3>Custom Dye & Blending</h3>
+                <p>Layanan maklon pewarnaan reaktif dan formulasi benang spesifik sesuai dengan instruksi *pantone* dan *grade* ketebalan (GSM) yang Anda butuhkan.</p>
             </div>
         </div>
     </section>
 
-    <!-- MITRA & KLIEN (LOGO MARQUEE) -->
     <section class="marquee-section reveal">
-        <h2 class="section-title" style="margin-bottom: 30px;">Telah Dipercaya Oleh</h2>
+        <h2 class="section-title">Mitra Industri Kami</h2>
         <div class="marquee-container">
             <div class="marquee-track">
-                
-                <!-- KELOMPOK LOGO 1 -->
-                <!-- Nanti kamu bisa mengganti teks ini dengan tag <img> logo sungguhan -->
-                <div class="logo-box">Boutique A</div>
-                <div class="logo-box">Brand B</div>
+                <div class="logo-box">Brand A</div>
+                <div class="logo-box">Boutique B</div>
                 <div class="logo-box">Konveksi C</div>
                 <div class="logo-box">Garment D</div>
                 <div class="logo-box">Fashion E</div>
                 
-                <!-- KELOMPOK LOGO 2 (DUPLIKAT DARI KELOMPOK 1) -->
-                <!-- Rahasia tanpa ujung: Kita harus menyalin persis logo di atas agar saat digulir tidak ada bagian yang kosong -->
-                <div class="logo-box"><img src="https://indoadmin.indorama.co.id/uploads/1774258493492_logo_2_1dffa34f0b.svg" alt="Logo Brand A"></div>
-                <div class="logo-box">Brand B</div>
+                <div class="logo-box">Brand A</div>
+                <div class="logo-box">Boutique B</div>
                 <div class="logo-box">Konveksi C</div>
                 <div class="logo-box">Garment D</div>
                 <div class="logo-box">Fashion E</div>
-
             </div>
         </div>
     </section>
 
-    <!-- KONTAK -->
     <section id="kontak" class="section reveal">
-        <h2 class="section-title">Hubungi Kami</h2>
+        <h2 class="section-title">Mari Bermitra</h2>
         <div class="contact-content">
             <div class="contact-info">
-                <h3>Informasi Perusahaan</h3>
-<br>
-<!-- DETAIL KONTAK -->
-<p><strong>Alamat:</strong> JL. Purwasari Cikampek No. 75 KP. Warung Kebon Kel. Purwasari, Kec. Purwasari, Kab. Karawang Jawa Barat - 41377</p>
+                <p><strong>Kantor & Pabrik Utama:</strong></p>
+                <p style="color: var(--text-light); max-width: 500px; margin: 0 auto 30px;">JL. Purwasari Cikampek No. 75 KP. Warung Kebon Kel. Purwasari, Kec. Purwasari, Kab. Karawang Jawa Barat - 41377</p>
 
-<!-- Link WhatsApp dengan pesan otomatis -->
-<p><strong>Telepon / WhatsApp:</strong> 
-    <a href="https://wa.me/6282227776077?text=Halo%20PT%20Benang%20Mas,%20saya%20ingin%20bertanya%20mengenai...">
-        +6282227776077
-    </a>
-</p>
+                <p><strong>Hotline Sales (WhatsApp):</strong> <br>
+                    <a href="https://wa.me/6282227776077?text=Halo%20PT%20Benang%20Mas,%20saya%20ingin%20meminta%20quotation...">+62 822-2777-6077</a>
+                </p>
 
-<!-- Link Email dengan subjek otomatis -->
-<p><strong>Email:</strong> 
-    <a href="mailto:ptbenangmas@gmail.com?subject=Pertanyaan%20Informasi&body=Halo%20Admin,%20saya%20ingin%20menanyakan...">
-        ptbenangmas@gmail.com
-    </a>
-</p>
+                <p><strong>Email Bisnis & Inquiry:</strong> <br>
+                    <a href="mailto:ptbenangmas@gmail.com">ptbenangmas@gmail.com</a>
+                </p>
 
-<p><strong>Jam Operasional:</strong> Senin - Jumat (08:00 - 17:00)</p>
+                <p style="margin-top: 30px; font-size: 0.9rem; color: #777;">
+                    <strong>Jam Operasional Distribusi:</strong> <br>
+                    Senin - Jumat | 08:00 - 17:00 WIB
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 PT. BENANG MAS WILLTEX. All Rights Reserved.</p>
+        <p>&copy; 2026 PT. BENANG MAS WILLTEX. Dirajut untuk masa depan.</p>
     </footer>
 
-    <!-- TOMBOL WHATSAPP MELAYANG -->
-    <!-- GANTI NOMOR HP DI DALAM LINK INI -->
-    <a href="https://wa.me/6282227776077?text=Halo%20TextileCorp,%20saya%20tertarik%20dengan%20produk%20Anda%20dan%20ingin%20bertanya%20lebih%20lanjut." class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Hubungi kami via WhatsApp">
-        <!-- Ini adalah kode gambar logo WhatsApp (SVG) agar kamu tidak perlu mengunduh gambar manual -->
+    <a href="https://wa.me/6282227776077" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 32 32" class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.05 2.05c-7.7 0-14 6.3-14 14 0 2.45.65 4.8 1.85 6.95L2 30l7.2-1.9c2.05 1.1 4.35 1.7 6.8 1.7 7.7 0 14-6.3 14-14s-6.3-14-13.95-14zm0 25.65c-2.1 0-4.15-.55-5.95-1.6l-.4-.25-4.4 1.15 1.2-4.3-.25-.45c-1.15-1.85-1.75-4-1.75-6.2 0-6.35 5.15-11.5 11.5-11.5s11.5 5.15 11.5 11.5-5.15 11.5-11.5 11.5zm6.3-8.6c-.35-.15-2.05-1-2.35-1.1-.3-.1-.5-.15-.7.15s-.9 1.1-1.1 1.35c-.2.25-.4.25-.75.1-2.1-1-3.65-2.4-5.1-4.65-.2-.3-.05-.45.1-.6.15-.15.35-.4.5-.6.15-.2.2-.35.3-.55.1-.2.05-.4-.05-.55-.1-.15-.7-1.7-1-2.35-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.5.05-.75.35-.25.3-1 1-1 2.45s1.05 2.85 1.2 3.05c.15.2 2.05 3.15 5 4.4 1.85.8 2.6.9 3.55.75 1-.15 2.05-.85 2.35-1.65.3-.85.3-1.6.2-1.75-.1-.15-.3-.25-.65-.4z"/>
         </svg>
     </a>
 
-    <script>
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15 // Animasi jalan saat 15% elemen sudah masuk layar
-        };
-        // Membuat pengamat (observer) untuk mendeteksi elemen di layar
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    // Jika elemen masuk ke layar, tambahkan class 'active' (munculkan)
-                    entry.target.classList.add('active'); 
-                } else {
-                    // JIKA ELEMEN KELUAR DARI LAYAR, HAPUS CLASS 'ACTIVE' (SEMBUNYIKAN LAGI)
-                    entry.target.classList.remove('active');
-                }
-            });
-        }, observerOptions);
-
-        // Mencari semua elemen yang memiliki class 'reveal'
-        const hiddenElements = document.querySelectorAll('.reveal');
-        hiddenElements.forEach((el) => observer.observe(el));
-    </script>
-
-    <!-- SCRIPT MENU HAMBURGER (MOBILE) -->
-    <script>
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navMenu = document.querySelector('.nav-links');
-
-        // Memunculkan/menyembunyikan menu saat ikon hamburger diklik
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Menyembunyikan menu otomatis saat salah satu link diklik (Opsional tapi bagus)
-        const navItems = document.querySelectorAll('.nav-links a');
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-    </script>
-
-    <!-- SCRIPT FITUR 1: HOVER-TO-ZOOM -->
-    <script>
-        const zoomContainers = document.querySelectorAll('.img-zoom-container');
-
-        zoomContainers.forEach(container => {
-            const img = container.querySelector('.zoom-img');
-
-            container.addEventListener('mousemove', (e) => {
-                // Mengambil ukuran dan posisi kotak gambar
-                const rect = container.getBoundingClientRect();
-                
-                // Menghitung posisi mouse di dalam kotak (dalam persentase)
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
-                
-                // Mengubah titik fokus zoom mengikuti posisi mouse
-                img.style.transformOrigin = `${x}% ${y}%`;
-            });
-
-            // Mengembalikan gambar ke tengah saat mouse keluar dari kotak
-            container.addEventListener('mouseleave', () => {
-                img.style.transformOrigin = 'center center';
-            });
-        });
-    </script>
-
     <div class="ai-chat-widget">
         <div class="ai-chat-btn" id="ai-chat-toggle">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
         </div>
 
         <div class="ai-chat-window" id="ai-chat-window">
             <div class="ai-chat-header">
-                <h4>TexBot - Asisten AI Tekstil</h4>
+                <h4>Assistant BMW</h4>
                 <span class="ai-chat-close" id="ai-chat-close">&times;</span>
             </div>
             <div class="ai-chat-messages" id="ai-chat-messages">
                 <div class="msg bot">
-                    Halo! Selamat datang di TextileCorp. Saya TexBot, asisten AI Anda. Ada yang bisa saya bantu hari ini?
+                    Halo! Saya asisten virtual Benang Mas. Ada spesifikasi benang atau kain yang sedang Anda cari?
                     <div class="chat-options">
-                        <button class="opt-btn" onclick="sendOption('Minimal Order?')">Minimal Order?</button>
-                        <button class="opt-btn" onclick="sendOption('Jenis Bahan?')">Jenis Bahan?</button>
-                        <button class="opt-btn" onclick="sendOption('Lokasi Pabrik?')">Lokasi Pabrik?</button>
+                        <button class="opt-btn" onclick="sendOption('Minimal Order (MOQ)?')">Cek MOQ</button>
+                        <button class="opt-btn" onclick="sendOption('Katalog Bahan')">Katalog Bahan</button>
+                        <button class="opt-btn" onclick="sendOption('Minta Pricelist')">Pricelist</button>
                     </div>
                 </div>
             </div>
             <div class="ai-chat-input-area">
-                <input type="text" id="ai-chat-input" placeholder="Ketik pesan Anda di sini...">
+                <input type="text" id="ai-chat-input" placeholder="Tanyakan spesifikasi...">
                 <button class="ai-chat-send" id="ai-chat-send">Kirim</button>
             </div>
         </div>
     </div>
 
     <script>
+        // Animasi Scroll
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active'); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-links');
+        mobileMenu.addEventListener('click', () => navMenu.classList.toggle('active'));
+        document.querySelectorAll('.nav-links a').forEach(item => {
+            item.addEventListener('click', () => navMenu.classList.remove('active'));
+        });
+
+        // Zoom Efek
+        document.querySelectorAll('.img-zoom-container').forEach(container => {
+            const img = container.querySelector('.zoom-img');
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                img.style.transformOrigin = `${x}% ${y}%`;
+            });
+            container.addEventListener('mouseleave', () => {
+                img.style.transformOrigin = 'center center';
+            });
+        });
+
+        // AI Chatbot
         const chatToggle = document.getElementById('ai-chat-toggle');
-        const chatClose = document.getElementById('ai-chat-close');
         const chatWindow = document.getElementById('ai-chat-window');
-        const chatMessages = document.getElementById('ai-chat-messages');
         const chatInput = document.getElementById('ai-chat-input');
-        const chatSend = document.getElementById('ai-chat-send');
-
-        // Fungsi Buka Tutup Chat Box
+        
         chatToggle.addEventListener('click', () => chatWindow.classList.toggle('active'));
-        chatClose.addEventListener('click', () => chatWindow.classList.remove('active'));
+        document.getElementById('ai-chat-close').addEventListener('click', () => chatWindow.classList.remove('active'));
 
-        // Fungsi Mengirim Pesan
         function handleSendMessage() {
             const text = chatInput.value.trim();
             if (!text) return;
-
             appendMessage(text, 'user');
             chatInput.value = '';
-
-            // Simulasi bot sedang berpikir / mengetik
-            setTimeout(() => {
-                const botReply = getBotResponse(text);
-                appendMessage(botReply, 'bot');
-            }, 800);
+            setTimeout(() => appendMessage(getBotResponse(text), 'bot'), 700);
         }
 
-        chatSend.addEventListener('click', handleSendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleSendMessage();
-        });
+        document.getElementById('ai-chat-send').addEventListener('click', handleSendMessage);
+        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendMessage(); });
 
-        // Fungsi untuk menempelkan balon teks ke layar chat
         function appendMessage(text, sender) {
             const msgDiv = document.createElement('div');
             msgDiv.classList.add('msg', sender);
             msgDiv.innerHTML = text;
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto scroll ke bawah
+            const messagesArea = document.getElementById('ai-chat-messages');
+            messagesArea.appendChild(msgDiv);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
         }
 
-        // Fungsi klik tombol opsi langsung
         function sendOption(optionText) {
             appendMessage(optionText, 'user');
-            setTimeout(() => {
-                const botReply = getBotResponse(optionText);
-                appendMessage(botReply, 'bot');
-            }, 600);
+            setTimeout(() => appendMessage(getBotResponse(optionText), 'bot'), 600);
         }
 
-        // OTAK AI PINTAR: Mencocokkan kata kunci teks input
         function getBotResponse(input) {
             const text = input.toLowerCase();
-
-            if (text.includes('minimal') || text.includes('order') || text.includes('pesan')) {
-                return "Untuk benang katun dan kain poliester standar, minimal pemesanan (MOQ) skala industri dimulai dari 100 roll/bal. Untuk custom warna khusus, silakan hubungi tim sales kami via WhatsApp.";
-            }
-            if (text.includes('bahan') || text.includes('kain') || text.includes('benang') || text.includes('produk')) {
-                return "Kami memproduksi Benang Katun 100%, Kain Polyester kualitas tinggi, serta melayani pemesanan campuran bahan kustom dan teknik pewarnaan khusus industri.";
-            }
-            if (text.includes('lokasi') || text.includes('alamat') || text.includes('pabrik')) {
-                return "Pabrik utama kami berlokasi di Jl. Industri Raya No. 88, Kawasan Pabrik Tekstil, Indonesia. Anda bisa melihat peta lengkapnya di bagian bawah website ini.";
-            }
-            if (text.includes('harga') || text.includes('biaya')) {
-                return "Harga produk kami sangat fleksibel tergantung volume pemesanan (skala grosir/industri). Silakan klik ikon WhatsApp di pojok kanan bawah untuk langsung mendapatkan penawaran harga resmi (Quotation).";
-            }
-            
-            // Balasan bawaan jika kata kunci tidak cocok
-            return "Terima kasih atas pesan Anda. Pertanyaan Anda telah kami catat. Untuk respon yang lebih cepat mengenai harga khusus atau spesifikasi teknis kain, Anda juga bisa langsung berbicara dengan tim ahli kami melalui tombol WhatsApp melayang di layar.";
+            if (text.includes('order') || text.includes('moq')) return "Untuk produksi skala industri, MOQ standar kami dimulai dari 100 bal/roll. Pesanan kustom warna bisa didiskusikan dengan tim sales.";
+            if (text.includes('katalog') || text.includes('bahan')) return "Fokus utama kami adalah Benang Katun murni dan Rajutan Polyester kualitas ekspor. Anda bisa mengunduh E-Katalog di halaman depan.";
+            if (text.includes('harga') || text.includes('pricelist')) return "Harga sangat bergantung pada fluktuasi bahan baku dan volume pemesanan. Silakan klik ikon WhatsApp untuk mendapatkan *quotation* resmi dari tim B2B kami.";
+            return "Pertanyaan Anda telah kami rekam. Untuk diskusi teknis spesifikasi kain yang lebih detail, tim *engineering* kami siap membantu via WhatsApp.";
         }
     </script>
-
 </body>
 </html>
